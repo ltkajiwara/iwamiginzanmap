@@ -27,7 +27,7 @@
 
   <script>
     // Make a map centered on Tokyo
-    const map = L.map('map').setView([35.105943422091485, 132.45192874794677], 13);
+    const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 15);
 
     // Add free OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -76,7 +76,7 @@ Matterportで見る
 </a>
   `);
 
-    L.marker([35.0948, 132.4391])
+    L.marker([35.09852345023761, 132.43903883075689])
   .addTo(map)
   .bindPopup(`
     <h3>石銀地区</h3>
@@ -87,7 +87,7 @@ Matterportで見る
 </a>
   `);
 
-    L.marker([35.0948, 132.4391])
+    L.marker([35.09960904790995, 132.43113267470957])
   .addTo(map)
   .bindPopup(`
     <h3>栃畑谷（発掘調査地区）</h3>
@@ -125,8 +125,20 @@ Matterportで見る
     <p>石見銀山の外港として発展した港町「温泉津」の街並みを見学できます（2025年7月計測）</p>
   `);
     
+    L.marker([35.0950735, 132.4448869])
+  .addTo(map)
+  .bindPopup(`
+    <h3>釜屋間歩</h3>
+    <img src="kamaya.png" width="200"><br>
+    <p>釜屋間歩における岩盤を加工したテラスや坑口，階段遺構を見学できます（2025年7月計測）</p>
+<a href="https://my.matterport.com/show/?m=zGnuNLD4WJu" target="_blank">
+      Matterportで見る
+</a>
+  `);
+    
   </script>
 </body>
 </html>
+
 
 
