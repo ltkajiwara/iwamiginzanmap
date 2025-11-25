@@ -27,7 +27,7 @@
 
   <script>
     // Make a map centered on Tokyo
-    const map = L.map('map').setView([35.105943422091485, 132.45192874794677], 9);
+    const map = L.map('map').setView([35.105943422091485, 132.45192874794677], 13);
 
     // Add free OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -87,7 +87,18 @@ Matterportで見る
 </a>
   `);
 
+    L.marker([35.0948, 132.4391])
+  .addTo(map)
+  .bindPopup(`
+    <h3>栃畑谷（発掘調査地区）</h3>
+    <img src="tochihatadani.png" width="200"><br>
+    <p>江戸時代の製錬炉等が出土した発掘調査の現場を見学できます（2025年7月計測）</p>
+<a> href="https://my.matterport.com/show/?m=FReiUj6kHRr" target="_blank">
+      Matterportで見る
+</a>
+  `);
 
   </script>
 </body>
 </html>
+
