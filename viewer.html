@@ -15,7 +15,7 @@
   <script>
     const viewer = new Marzipano.Viewer(document.getElementById('pano'));
     const urlParams = new URLSearchParams(window.location.search);
-    const img = urlParams.get('img') || 'panoramas/acropolistest.jpg';
+    const img = params.get('img') || 'https://raw.githubusercontent.com/ltkajiwara/iwamiginzanmap/main/panoramas/acropolistest.jpg';
     const source = Marzipano.ImageUrlSource.fromString(img);
     const geometry = new Marzipano.EquirectGeometry([{ width: 8192 }]);
     const limiter = Marzipano.RectilinearView.limit.traditional(8192, 100*Math.PI/180);
