@@ -45,40 +45,33 @@ L.marker([35.681236, 139.767125])
   .addTo(map)
   .bindPopup(`
     <h3>Test (Tokyo Station)</h3>
-    <img src="tokyo station.webp" width="270"><br>
+    <img src="tokyo station.webp" width="350"><br>
     <p>TYK</p>
-
-    <!-- Fullscreen viewer link -->
-    <a href="psv.html?img=acropolistest.jpg" target="_blank" rel="noopener">
-      Open Fullscreen 360° Panorama
-    </a>
-
-    <br><br>
-
-    <!-- Embedded 360° viewer inside popup -->
-    <div id="psv-container" style="
-      width:300px;
-      height:200px;
-      background:black;
-      border-radius:6px;">
+    <div id="psv-container" style="width:300px; height:200px; background:#000; color:#fff; display:flex; justify-content:center; align-items:center;">
+      Loading 360…
     </div>
+    <p><a href="psv.html?img=acropolistest.jpg" target="_blank">Open Fullscreen 360°</a></p>
   `)
-  .bindTooltip("Tokyo Station", {
-    permanent: true,
-    direction: "top",
-    offset: [0, -20],
-    opacity: 1
-  })
   .on("popupopen", () => {
     const container = document.getElementById("psv-container");
-    if (!container) return;
+    if (!container) {
+      console.error("PSV container not found");
+      return;
+    }
 
-    new PhotoSphereViewer.Viewer({
-      container: container,
-      panorama: "acropolistest.jpg",
-      loadingImg: null,
-      defaultZoomLvl: 0,
-    });
+    try {
+      new PhotoSphereViewer.Viewer({
+        container: container,
+        panorama: "acropolistest.jpg",
+        loadingImg: null,
+        navbar: ['zoom','fullscreen'],
+        defaultZoomLvl: 0,
+        size: { width: 300, height: 200 }
+      });
+    } catch (e) {
+      console.error("PSV error:", e);
+      container.innerHTML = "Error loading 360°";
+    }
   });
 
     L.marker([35.0953231857212, 132.44456630308682])
@@ -202,6 +195,7 @@ L.marker([35.681236, 139.767125])
   </script>
 </body>
 </html>
+
 
 
 
