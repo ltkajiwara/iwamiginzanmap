@@ -47,31 +47,15 @@ L.marker([35.681236, 139.767125])
     <h3>Test (Tokyo Station)</h3>
     <img src="tokyo station.webp" width="350"><br>
     <p>TYK</p>
-    <div id="psv-container" style="width:300px; height:200px; background:#000; color:#fff; display:flex; justify-content:center; align-items:center;">
-      Loading 360…
-    </div>
-    <p><a href="psv.html?img=acropolistest.jpg" target="_blank">Open Fullscreen 360°</a></p>
+    <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">Matterportで見る</a>
+    <br>
+    <a href="marzipano/viewer.html" target="_blank">360° Panorama (Marzipano)</a>
   `)
-  .on("popupopen", () => {
-    const container = document.getElementById("psv-container");
-    if (!container) {
-      console.error("PSV container not found");
-      return;
-    }
-
-    try {
-      new PhotoSphereViewer.Viewer({
-        container: container,
-        panorama: "acropolistest.jpg",
-        loadingImg: null,
-        navbar: ['zoom','fullscreen'],
-        defaultZoomLvl: 0,
-        size: { width: 300, height: 200 }
-      });
-    } catch (e) {
-      console.error("PSV error:", e);
-      container.innerHTML = "Error loading 360°";
-    }
+  .bindTooltip("Tokyo Station", {
+    permanent: true,
+    direction: "top",
+    offset: [0, -20],
+    opacity: 1
   });
 
     L.marker([35.0953231857212, 132.44456630308682])
@@ -195,6 +179,7 @@ L.marker([35.681236, 139.767125])
   </script>
 </body>
 </html>
+
 
 
 
