@@ -43,16 +43,22 @@ const mineIcon = L.icon({
 });
 
     // Add a marker at Tokyo Station
-    L.marker([35.681236, 139.767125])
+  L.marker([35.681236, 139.767125])
   .addTo(map)
   .bindPopup(`
-    <h3>Tokyo Station</h3>
+    <h3>Test (Tokyo Station)</h3>
     <img src="tokyo station.webp" width="350"><br>
     <p>TYK</p>
-<a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">
+    <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">
       Matterportで見る
-</a>
-  `);
+    </a>
+  `)
+  .bindTooltip("Tokyo Station", {
+    permanent: true,
+    direction: "top",
+    offset: [0, -10], // raise the label slightly above the marker
+    opacity: 1
+  });
 
     L.marker([35.0953231857212, 132.44456630308682])
   .addTo(map)
@@ -139,6 +145,7 @@ Matterportで見る
   </script>
 </body>
 </html>
+
 
 
 
