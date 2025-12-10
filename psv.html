@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>360° Viewer</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.css" />
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
+
+  <style>
+    html, body { margin: 0; height: 100%; }
+    #viewer { width: 100%; height: 100%; }
+  </style>
+</head>
+
+<body>
+  <div id="viewer"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const img = params.get("img");
+
+    new PhotoSphereViewer.Viewer({
+      container: document.getElementById("viewer"),
+      panorama: img,
+      touchmoveTwoFingers: true,
+      mousewheelCtrlKey: true,
+    });
+  </script>
+</body>
+</html>
