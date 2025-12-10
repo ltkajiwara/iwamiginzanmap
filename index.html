@@ -49,13 +49,17 @@ L.marker([35.681236, 139.767125])
     <img src="tokyo station.webp" width="350"><br>
     <p>TYK</p>
 
-    <!-- 360° viewer container -->
-    <div id="pano_tokyo" style="width: 300px; height: 180px; margin-top:10px;"></div>
+    <!-- Inline PSV Viewer -->
+    <h4>Embedded 360° Preview</h4>
+    <div id="psv-inline" style="width: 300px; height: 200px; background:#000"></div>
 
-    <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">
-      Matterportで見る
-    </a>
-  `)
+    <!-- Fullscreen Viewer Link -->
+    <p>
+      <a href="psv.html?img=acropolistest.jpg" target="_blank">
+        View Fullscreen 360° Panorama
+      </a>
+    </p>
+  `, { maxWidth: 400 })
   .bindTooltip("Tokyo Station", {
     permanent: true,
     direction: "top",
@@ -63,12 +67,12 @@ L.marker([35.681236, 139.767125])
     opacity: 1
   })
   .on("popupopen", () => {
+    // Initialize inline PSV *only after popup opens*
     new PhotoSphereViewer.Viewer({
-      container: document.getElementById("pano_tokyo"),
-      panorama: "acropolistest.jpg",
-      navbar: ["zoom", "fullscreen"],
-      loadingImg: null,
-      defaultYaw: 0
+      container: document.getElementById('psv-inline'),
+      panorama: 'acropolistest.jpg',
+      touchmoveTwoFingers: true,
+      mousewheelCtrlKey: true,
     });
   });
 
@@ -193,6 +197,7 @@ L.marker([35.681236, 139.767125])
   </script>
 </body>
 </html>
+
 
 
 
