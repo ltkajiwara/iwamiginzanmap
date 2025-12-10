@@ -8,11 +8,6 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-  <!-- PhotoSphereViewer -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.css" />
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
-
   <style>
     #map {
       height: 100vh;
@@ -20,7 +15,6 @@
     }
   </style>
 </head>
-
 <body>
   <div id="map"></div>
 
@@ -28,35 +22,30 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <script>
-    // Make a map centered on Iwami
     const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
 
-    // Base map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: "© OpenStreetMap contributors"
     }).addTo(map);
 
-    // ------------------------------------------------------
-    // MARKERS WITH CENTERED LABELS ABOVE THEM
-    // ------------------------------------------------------
-
-L.marker([35.681236, 139.767125])
-  .addTo(map)
-  .bindPopup(`
-    <h3>Test (Tokyo Station)</h3>
-    <img src="tokyo station.webp" width="350"><br>
-    <p>TYK</p>
-    <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">Matterportで見る</a>
-    <br>
-    <a href="marzipano/viewer.html" target="_blank">360° Panorama (Marzipano)</a>
-  `)
-  .bindTooltip("Tokyo Station", {
-    permanent: true,
-    direction: "top",
-    offset: [0, -20],
-    opacity: 1
-  });
+    // Marker: Tokyo Station (Test)
+    L.marker([35.681236, 139.767125])
+      .addTo(map)
+      .bindPopup(`
+        <h3>Test (Tokyo Station)</h3>
+        <img src="tokyo station.webp" width="350"><br>
+        <p>TYK</p>
+        <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">Matterportで見る</a>
+        <br>
+        <a href="marzipano/viewer.html" target="_blank" rel="noopener">360° Panorama (Marzipano)</a>
+      `)
+      .bindTooltip("Tokyo Station", {
+        permanent: true,
+        direction: "top",
+        offset: [0, -20],
+        opacity: 1
+      });
 
     L.marker([35.0953231857212, 132.44456630308682])
       .addTo(map)
@@ -179,6 +168,7 @@ L.marker([35.681236, 139.767125])
   </script>
 </body>
 </html>
+
 
 
 
