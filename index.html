@@ -111,7 +111,13 @@
 <a href="https://my.matterport.com/show/?m=horoqkThL2i" target="_blank">
 Matterportで見る
 </a>
-  `);
+  `)
+  .bindTooltip("大久保間歩", {
+    permanent: true,
+    direction: "top",
+    offset: [0, -10], // raise the label slightly above the marker
+    opacity: 1
+  });
 
     L.marker([35.105943422091485, 132.45192874794677])
   .addTo(map)
@@ -187,6 +193,7 @@ Matterportで見る
   </script>
 </body>
 </html>
+
 
 
 
