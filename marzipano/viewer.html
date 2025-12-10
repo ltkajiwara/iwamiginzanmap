@@ -5,8 +5,8 @@
   <title>360° Panorama Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Marzipano Library -->
-  <script src="https://www.marzipano.net/demos/vendor/marzipano.js"></script>
+  <!-- Correct Marzipano library -->
+  <script src="https://www.marzipano.net/demos/marzipano.js"></script>
 
   <style>
     html, body {
@@ -24,31 +24,19 @@
 <body>
   <div id="pano"></div>
 
-  <script src="data.js"></script>
   <script>
+    // Image INSIDE the /marzipano/ folder
+    const panoUrl = "acropolistest.jpg";
+    const imageWidth = 7904; // your panorama width
+
     // Create viewer
     const viewer = new Marzipano.Viewer(document.getElementById("pano"));
 
-    // Build the geometry
-    const geometry = new Marzipano.CylindricalGeometry([{ width: panoImage.width }]);
+    // Use equirectangular geometry for 360x180 panoramas
+    const geometry = new Marzipano.EquirectGeometry([
+      { width: imageWidth }
+    ]);
 
-    // View settings
-    const limiter = Marzipano.RectilinearView.limit.traditional(1024, 120*Math.PI/180);
-    const view = new Marzipano.RectilinearView({ yaw: 0, pitch: 0 }, limiter);
-
-    // Create the source for the panorama
-    const source = Marzipano.ImageUrlSource.fromString(panoImage.url);
-
-    // Create the scene
-    const scene = viewer.createScene({
-      source: source,
-      geometry: geometry,
-      view: view
-    });
-
-    // Display it
-    scene.switchTo();
-  </script>
-
-</body>
-</html>
+    // View limit
+    const limiter = Marzipano.RectilinearView.limit.traditional(1024, 120 * Math.PI / 180);
+    const view = new Marzipano.Rectili
