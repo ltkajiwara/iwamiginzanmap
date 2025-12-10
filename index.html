@@ -40,15 +40,16 @@ HTML<!DOCTYPE html>
       const container = document.getElementById('pano-container');
       if (!container || container.dataset.loaded) return;
 
-      const imageUrl = "panoramas/acropolistest.jpg";   // ← only this line matters
+  const imageUrl = "https://raw.githubusercontent.com/ltkajiwara/iwamiginzanmap/main/panoramas/acropolistest.jpg"; // ← only this line matters
 
-      // Try to load the image first – if it 404s, we keep the text
-      const img = new Image();
-      img.onload = () => {
-        const viewer = new Marzipano.Viewer(container, { stage: { progressive: true } });
-        const source = Marzipano.ImageUrlSource.fromString(imageUrl);
-        const geometry = new Marzipano.EquirectGeometry([{ width: 8192 }]);
-        const limiter = Marzipano.RectilinearView.limit.traditional(4096, 100*Math.PI/180);
+  // Try to load the image first – if it 404s, we keep the text
+  const img = new Image();
+  img.crossOrigin = "anonymous"; // Ensures CORS ok
+  img.onload = () => {
+    const viewer = new Marzipano.Viewer(container, { stage: { progressive: true }, textureStoreOpts: { crossOrigin: "anonymous" } });
+    const source = Marzipano.ImageUrlSource.fromString(imageUrl);
+    const geometry = new Marzipano.EquirectGeometry([{ width: 7904 }]); // ← Changed to match your exact image width (fixes minor distortion)
+    const limiter = Marzipano.RectilinearView.limit.traditional(7904, 100*Math.PI/180); // ← Updated to match width
         const view = new Marzipano.RectilinearView({ yaw: 0, pitch: 0 }, limiter);
         const scene = viewer.createScene({ source, geometry, view });
         scene.switchTo();
@@ -143,4 +144,5 @@ HTML<!DOCTYPE html>
   </script>
 </body>
 </html>
+
 
