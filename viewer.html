@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pannellum Viewer</title>
+
+  <!-- Pannellum (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+  <style>
+    html,body { height:100%; margin:0; }
+    #panorama { width:100%; height:100%; }
+  </style>
+</head>
+<body>
+  <div id="panorama"></div>
+
+  <script>
+    // Read image filename from query parameter ?img=images/okubo_360.jpg
+    const params = new URLSearchParams(window.location.search);
+    const img = params.get('img') || 'images/acropolistest.jpg';
+
+    // Initialize pannellum viewer
+    pannellum.viewer('panorama', {
+      type: "equirectangular",
+      panorama: img,
+      autoLoad: true,
+      showFullscreenCtrl: true,
+      showZoomCtrl: true,
+      pitch: 0,
+      yaw: 0,
+      hotSpotDebug: false
+    });
+  </script>
+</body>
+</html>
