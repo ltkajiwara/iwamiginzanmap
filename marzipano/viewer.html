@@ -5,7 +5,7 @@
   <title>360° Panorama Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Marzipano Library (CDN) -->
+  <!-- Marzipano Library (official CDN) -->
   <script src="https://cdn.jsdelivr.net/gh/google/marzipano/dist/marzipano.js"></script>
 
   <style>
@@ -25,19 +25,20 @@
   <div id="pano"></div>
 
   <script>
-    // Wait for page load
     window.onload = function() {
-      // Create viewer
+      // Create the viewer
       const viewer = new Marzipano.Viewer(document.getElementById("pano"));
 
-      // Use the panorama image in the repo root
+      // Panorama image path
       const panoUrl = "../acropolistest.jpg";
 
-      // Create source and geometry
+      // Image source
       const source = Marzipano.ImageUrlSource.fromString(panoUrl);
-      const geometry = new Marzipano.CylindricalGeometry([{ width: 8000 }]); // approximate width in px
 
-      // Create a view (Rectilinear for cylindrical)
+      // Geometry (Cylindrical for mobile panoramas)
+      const geometry = new Marzipano.CylindricalGeometry([{ width: 7904 }]); // use your actual image width
+
+      // View (Rectilinear)
       const limiter = Marzipano.RectilinearView.limit.traditional(1024, 120 * Math.PI / 180);
       const view = new Marzipano.RectilinearView({ yaw: 0, pitch: 0 }, limiter);
 
@@ -48,7 +49,7 @@
         view: view
       });
 
-      // Display the panorama
+      // Display panorama
       scene.switchTo();
     };
   </script>
