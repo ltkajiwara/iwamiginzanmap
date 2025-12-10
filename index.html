@@ -41,25 +41,28 @@
     // MARKERS WITH CENTERED LABELS ABOVE THEM
     // ------------------------------------------------------
 
-   // 360° panorama for Tokyo Station
 L.marker([35.681236, 139.767125])
   .addTo(map)
   .bindPopup(`
     <h3>Test (Tokyo Station)</h3>
-    <img src="tokyo station.webp" width="350"><br>
+    <img src="tokyo station.webp" width="270"><br>
     <p>TYK</p>
 
-    <!-- Inline PSV Viewer -->
-    <h4>Embedded 360° Preview</h4>
-    <div id="psv-inline" style="width: 300px; height: 200px; background:#000"></div>
+    <!-- Fullscreen viewer link -->
+    <a href="psv.html?img=acropolistest.jpg" target="_blank" rel="noopener">
+      Open Fullscreen 360° Panorama
+    </a>
 
-    <!-- Fullscreen Viewer Link -->
-    <p>
-      <a href="psv.html?img=acropolistest.jpg" target="_blank">
-        View Fullscreen 360° Panorama
-      </a>
-    </p>
-  `, { maxWidth: 400 })
+    <br><br>
+
+    <!-- Embedded 360° viewer inside popup -->
+    <div id="psv-container" style="
+      width:300px;
+      height:200px;
+      background:black;
+      border-radius:6px;">
+    </div>
+  `)
   .bindTooltip("Tokyo Station", {
     permanent: true,
     direction: "top",
@@ -67,12 +70,14 @@ L.marker([35.681236, 139.767125])
     opacity: 1
   })
   .on("popupopen", () => {
-    // Initialize inline PSV *only after popup opens*
+    const container = document.getElementById("psv-container");
+    if (!container) return;
+
     new PhotoSphereViewer.Viewer({
-      container: document.getElementById('psv-inline'),
-      panorama: 'acropolistest.jpg',
-      touchmoveTwoFingers: true,
-      mousewheelCtrlKey: true,
+      container: container,
+      panorama: "acropolistest.jpg",
+      loadingImg: null,
+      defaultZoomLvl: 0,
     });
   });
 
@@ -197,6 +202,7 @@ L.marker([35.681236, 139.767125])
   </script>
 </body>
 </html>
+
 
 
 
