@@ -16,6 +16,19 @@
       height: 100vh; /* full-height map */
       width: 100vw;
     }
+
+    /* ← NEW: label style */
+    .marker-label {
+      background: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-align: center;
+      white-space: nowrap;
+      position: absolute;
+      transform: translate(-50%, -100%); /* center and move above marker */
+      font-size: 14px;
+      border: 1px solid #888;
+    }
   </style>
 </head>
 
@@ -26,7 +39,7 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <script>
-    // Make a map centered on Tokyo
+    // Make a map centered on Iwami
     const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
 
     // Add free OpenStreetMap tiles
@@ -35,12 +48,41 @@
       attribution: "© OpenStreetMap contributors"
     }).addTo(map);
 
-const mineIcon = L.icon({
-  iconUrl: 'marker.png',  // put your icon file in the same folder as index.html
-  iconSize: [40, 40],   // width, height in pixels
-  iconAnchor: [20, 40], // point of the icon which corresponds to the marker location
-  popupAnchor: [0, -40] // position of the popup relative to the icon
-});
+    // Custom marker icon
+    const mineIcon = L.icon({
+      iconUrl: 'marker.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -40]
+    });
+
+    /* ----------------------------------------------------
+       ← NEW: Labeled marker example (copy this for each one)
+    ---------------------------------------------------- */
+
+    // The label above the marker
+    const label = L.divIcon({
+      className: "marker-label",
+      html: "Tokyo Station"  // ← change this label
+    });
+
+    // Add label as invisible marker
+    L.marker([35.681236, 139.767125], { icon: label }).addTo(map);
+
+    // Add actual clickable marker
+    L.marker([35.681236, 139.767125], { icon: mineIcon })
+      .addTo(map)
+      .bindPopup(`
+        <h3>Test (Tokyo Station)</h3>
+        <img src="tokyo station.webp" width="350"><br>
+        <p>TYK</p>
+        <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">
+          Matterportで見る
+        </a>
+      `);
+  </script>
+</body>
+</html>
 
     // Add a marker at Tokyo Station
   L.marker([35.681236, 139.767125])
@@ -145,6 +187,7 @@ Matterportで見る
   </script>
 </body>
 </html>
+
 
 
 
