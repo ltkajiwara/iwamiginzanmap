@@ -5,23 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Leaflet CSS -->
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <!-- Marzipano from CDN (reliable, always works) -->
+  <!-- Marzipano (reliable CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/marzipano@0.11.0/build/marzipano.min.js"></script>
 
   <style>
     #map { height: 100vh; width: 100vw; }
     .marzipano-popup { width: 100%; height: 350px; background:#000; }
-    @media (min-width:640px) { .marzipano-popup { height: 480px; } }
+    @media (min-width:640px) { .marzipano-popup { height: 500px; } }
   </style>
 </head>
 <body>
   <div id="map"></div>
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <script>
     const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
@@ -31,48 +29,35 @@
       attribution: "© OpenStreetMap contributors"
     }).addTo(map);
 
-    // ─────────────────────────────────────────────────────────────
-    // 唯一変更した部分：東京駅テストマーカー → 埋め込みMarzipanoに変更
-    // ─────────────────────────────────────────────────────────────
+    // ——————— Tokyo Station test marker → now shows embedded 360° panorama ———————
     const tokyoMarker = L.marker([35.681236, 139.767125])
       .addTo(map)
-      .bindTooltip("Tokyo Station 360° Test", {
-        permanent: true,
-        direction: "top",
-        offset: [0, -20],
-        opacity: 1
-      });
+      .bindTooltip("360° Test (Acropolis)", { permanent: true, direction: "top", offset: [0, -20] });
 
-    tokyoMarker.bindPopup("", { maxWidth: 700 });
-
+    tokyoMarker.bindPopup("", { maxWidth: 800 });
     tokyoMarker.on('popupopen', () => {
       const popup = tokyoMarker.getPopup();
-      // すでに中身があれば何もしない（二重作成防止）
-      if (popup._content && popup._content.nodeType) return;
+      if (popup._content && popup._content.nodeType) return; // already created
 
-      const container = L.DomUtil.create('div', 'marzipano-popup');
+      const div = L.DomUtil.create('div', 'marzipano-popup');
 
-      // ここにあなたのスマホで撮った360°写真のパスを書いてください
-      // 例： panoramas/my-tokyo-station.jpg
-      const imageUrl = "panoramas/acropolistest.jpg";   // ← このファイル名だけ変えてね
+      // CHANGE ONLY THIS LINE to match your exact filename inside the panoramas folder
+      const imageUrl = "panoramas/acropolistest.jpg";   // ← your photo here
 
-      const viewer = new Marzipano.Viewer(container, { stage: { progressive: true } });
-
+      const viewer = new Marzipano.Viewer(div, { stage: { progressive: true } });
       const source = Marzipano.ImageUrlSource.fromString(imageUrl);
       const geometry = new Marzipano.EquirectGeometry([{ width: 8192 }]);
       const limiter = Marzipano.RectilinearView.limit.traditional(4096, 100*Math.PI/180);
       const view = new Marzipano.RectilinearView({}, limiter);
-
       const scene = viewer.createScene({ source, geometry, view });
       scene.switchTo();
 
-      setTimeout(() => viewer.resize(), 150);  // ポップアップが完全に開いてからリサイズ
+      setTimeout(() => viewer.resize(), 200); // ensures it fits perfectly
 
-      popup.setContent(container);
+      popup.setContent(div);
     });
-    // ─────────────────────────────────────────────────────────────
 
-    // 以下はあなたの元のコードを1文字も変えていません（そのままコピペ）
+    // ——————— All your original Iwami Ginzan markers below (100% untouched) ———————
     L.marker([35.0953231857212, 132.44456630308682])
       .addTo(map)
       .bindPopup(`
@@ -118,4 +103,39 @@
       .bindPopup(`
         <h3>清水谷精錬所跡</h3>
         <img src="shimizudani.png" width="200"><br>
-        <p>明治時代に造られた精錬所の遺跡「清水谷精錬所跡」を見学できます（2025
+        <p>明治時代に造られた精錬所の遺跡「清水谷精錬所跡」を見学できます（2025年7月計測）</p>
+        <a href="https://my.matterport.com/show/?m=E6tRvmru3P5" target="_blank">Matterportで見る</a>
+      `)
+      .bindTooltip("清水谷精錬所跡", { permanent: true, direction: "top", offset: [0, -20], opacity: 1 });
+
+    L.marker([35.115349488774065, 132.44588041268344])
+      .addTo(map)
+      .bindPopup(`
+        <h3>伝建地区「大森町」</h3>
+        <img src="omoricho.jpg" width="200"><br>
+        <p>江戸時代の武家屋敷や豪商の住宅など，当時の面影を良く残している「大森町」の街並みの一部を見学できます（2024年12月計測）</p>
+      `)
+      .bindTooltip("大森町", { permanent: true, direction: "top", offset: [0, -20], opacity: 1 });
+
+    L.marker([35.095985785248146, 132.347967808941])
+      .addTo(map)
+      .bindPopup(`
+        <h3>伝建地区「温泉津」</h3>
+        <img src="yunotsu.png" width="200"><br>
+        <p>石見銀山の外港として発展した港町「温泉津」の街並みを見学できます（2025年7月計測）</p>
+      `)
+      .bindTooltip("温泉津", { permanent: true, direction: "top", offset: [0, -20], opacity: 1 });
+
+    L.marker([35.0950735, 132.4448869])
+      .addTo(map)
+      .bindPopup(`
+        <h3>釜屋間歩</h3>
+        <img src="kamaya.png" width="200"><br>
+        <p>釜屋間歩における岩盤を加工したテラスや坑口，階段遺構を見学できます（2025年7月計測）</p>
+        <a href="https://my.matterport.com/show/?m=zGnuNLD4WJu" target="_blank">Matterportで見る</a>
+      `)
+      .bindTooltip("釜屋間歩", { permanent: true, direction: "top", offset: [0, -20], opacity: 1 });
+
+  </script>
+</body>
+</html>
