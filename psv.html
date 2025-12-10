@@ -3,14 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <title>360° Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- PhotoSphereViewer -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.css" />
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
 
   <style>
-    html, body { margin: 0; height: 100%; }
-    #viewer { width: 100%; height: 100%; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+    }
+    #viewer {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 
@@ -18,14 +27,21 @@
   <div id="viewer"></div>
 
   <script>
+    // Read the ?img=filename query parameter
     const params = new URLSearchParams(window.location.search);
-    const img = params.get("img");
+    const img = params.get("img") || "acropolistest.jpg";
 
+    // Initialize PhotoSphereViewer fullscreen
     new PhotoSphereViewer.Viewer({
-      container: document.getElementById("viewer"),
+      container: document.getElementById('viewer'),
       panorama: img,
+      navbar: [
+        'zoom',
+        'autorotate',
+        'fullscreen'
+      ],
+      defaultZoomLvl: 0,
       touchmoveTwoFingers: true,
-      mousewheelCtrlKey: true,
     });
   </script>
 </body>
