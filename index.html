@@ -33,6 +33,11 @@
   const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
 
   // --- Base map layers ---
+  const osm = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { attribution: '© OpenStreetMap contributors' }
+  );
+  
   const cartoLight = L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     { attribution: '&copy; OpenStreetMap & CARTO' }
@@ -67,10 +72,11 @@
   );
 
   // Default layer
-  cartoLight.addTo(map);
+  osm.addTo(map);
 
   // Layer switcher
   L.control.layers({
+    "OpenStreetMap (Default)": osm,
     "Vector (Carto Light)": cartoLight,
     "Vector (Carto Dark)": cartoDark,
     "Satellite (Esri World Imagery)": esriSatellite,
@@ -78,6 +84,7 @@
     "Historic (GSI Meiji Rapid Survey)": gsiHistoric,
     "Historic (GSI Pale Style)": gsiPale
   }).addTo(map);
+
 
   // ----------------------------------------
   // TEST 360° MARKER
@@ -97,7 +104,7 @@
     .bindTooltip("360° Test", {
       permanent: true,
       direction: "top",
-      offset: [0, 0]
+      offset: [-15,-20]
     });
 
   // ----------------------------------------
@@ -108,21 +115,21 @@
     <img src="okubo mabo.png" width="250"><br>
     <p>石見銀山でも最大の坑道であった大久保間歩の一部を見学できます（2025年7月計測）</p>
     <a href="https://my.matterport.com/show/?m=horoqkThL2i" target="_blank">Matterportで見る</a>
-  `).bindTooltip("大久保間歩", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("大久保間歩", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.105943422091485, 132.45192874794677]).addTo(map).bindPopup(`
     <h3>石見銀山世界遺産センター</h3>
     <img src="iwami whc.jpg" width="200"><br>
     <p>展示室内部を見学できます（2024年12月計測）</p>
     <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">Matterportで見る</a>
-  `).bindTooltip("石見銀山世界遺産センター", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("石見銀山世界遺産センター", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.09852345023761, 132.43903883075689]).addTo(map).bindPopup(`
     <h3>石銀地区</h3>
     <img src="1762525465.png" width="200"><br>
     <p>江戸時代の鉱山町「石銀地区」の一部を見学できます</p>
     <a href="https://my.matterport.com/show/?m=jruDkQ6CTAE" target="_blank">Matterportで見る</a>
-  `).bindTooltip("石銀地区", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("石銀地区", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.09960904790995, 132.43113267470957]).addTo(map).bindPopup(`
     <h3>栃畑谷（発掘調査地区）</h3>
@@ -136,29 +143,30 @@
     <img src="shimizudani.png" width="200"><br>
     <p>明治時代に造られた精錬所の遺跡を見学できます（2025年7月計測）</p>
     <a href="https://my.matterport.com/show/?m=E6tRvmru3P5" target="_blank">Matterportで見る</a>
-  `).bindTooltip("清水谷精錬所跡", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("清水谷精錬所跡", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.115349488774065, 132.44588041268344]).addTo(map).bindPopup(`
     <h3>伝建地区「大森町」</h3>
     <img src="omoricho.jpg" width="200"><br>
     <p>江戸時代の街並みの一部を見学できます（2024年12月計測）</p>
-  `).bindTooltip("大森町", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("大森町", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.095985785248146, 132.347967808941]).addTo(map).bindPopup(`
     <h3>伝建地区「温泉津」</h3>
     <img src="yunotsu.png" width="200"><br>
     <p>石見銀山の外港として発展した港町「温泉津」の街並みを見学できます（2025年7月計測）</p>
-  `).bindTooltip("温泉津", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("温泉津", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.0950735, 132.4448869]).addTo(map).bindPopup(`
     <h3>釜屋間歩</h3>
     <img src="kamaya.png" width="200"><br>
     <p>釜屋間歩の遺構を見学できます（2025年7月計測）</p>
     <a href="https://my.matterport.com/show/?m=zGnuNLD4WJu" target="_blank">Matterportで見る</a>
-  `).bindTooltip("釜屋間歩", {permanent:true,direction:"top",offset:[0,0]});
+  `).bindTooltip("釜屋間歩", {permanent:true,direction:"top",offset:[-15,-20]});
 
 </script>
 </body>
 </html>
+
 
 
