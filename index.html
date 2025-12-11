@@ -27,11 +27,51 @@
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <script>
-    const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: "© OpenStreetMap contributors"
-    }).addTo(map);
+  const map = L.map('map').setView([35.108196956306735, 132.3999512741166], 13);
+
+// --- Base map layers ---
+const cartoLight = L.tileLayer(
+  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  { attribution: '&copy; OpenStreetMap & CARTO' }
+);
+
+const cartoDark = L.tileLayer(
+  'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  { attribution: '&copy; OpenStreetMap & CARTO' }
+);
+
+const esriSatellite = L.tileLayer(
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  { attribution: "Tiles © Esri" }
+);
+
+const gsiOrtho = L.tileLayer(
+  'https://maps.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg',
+  { attribution: '国土地理院' }
+);
+
+const gsiHistoric = L.tileLayer(
+  'https://maps.gsi.go.jp/xyz/map52/{z}/{x}/{y}.png',
+  { attribution: '国土地理院（歴史地図）' }
+);
+
+const gsiPale = L.tileLayer(
+  'https://maps.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
+  { attribution: '国土地理院' }
+);
+
+// --- Add default layer ---
+cartoLight.addTo(map);
+
+// --- Add layer switcher ---
+L.control.layers({
+  "Vector (Carto Light)": cartoLight,
+  "Vector (Carto Dark)": cartoDark,
+  "Satellite (Esri World Imagery)": esriSatellite,
+  "Satellite (GSI Japan Orthophoto)": gsiOrtho,
+  "Historic (GSI Meiji Rapid Survey)": gsiHistoric,
+  "Historic (GSI Pale Style)": gsiPale
+}).addTo(map);
 
     // TOKYO TEST MARKER – opens full-screen 360° viewer
     L.marker([35.681236, 139.767125])
@@ -101,6 +141,7 @@
   </script>
 </body>
 </html>
+
 
 
 
