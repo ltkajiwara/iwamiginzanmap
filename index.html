@@ -68,23 +68,6 @@
 
 
   // ----------------------------------------
-  // TEST 360° MARKER
-  // ----------------------------------------
-  L.marker([35.681236, 139.767125])
-    .addTo(map)
-    .bindPopup(`
-      <h3>360° Panorama Test</h3>
-      <img src="tokyo station.webp" width="300" style="border-radius:8px;"><br><br>
-      <p>Click below for immersive full-screen 360° view</p>
-      <iframe width="100%" height="320" frameborder="0"
-        allow="xr-spatial-tracking; gyroscope; accelerometer"
-        allowfullscreen scrolling="no"
-        src="https://kuula.co/share/collection/7HHcf?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1">
-      </iframe>
-    `, { maxWidth: 400 })
-    .bindTooltip("360° Test", {permanent: true,direction: "top",offset: [-15,-20]});
-
-  // ----------------------------------------
   // ORIGINAL IWAMI GINZAN MARKERS
   // ----------------------------------------
   L.marker([35.0953056, 132.44455555555555]).addTo(map).bindPopup(`
@@ -99,7 +82,7 @@
     <img src="iwami whc.jpg" width="200"><br>
     <p>展示室内部を見学できます（2024年12月計測）</p>
     <a href="https://my.matterport.com/show/?m=5JKWdRLs41V" target="_blank">Matterportで見る</a><br>
-    <a href="https://lcc-viewer.xgrids.com/pub/2ac91467-b9e3-456a-bc9c-acb74ca84d9a" target="_blank">PortalCamスキャンを見る</a>
+    <a href="https://superspl.at/view?id=d53b3e53">3D Gaussian Splattingによるモデルを見る</a>
   `).bindTooltip("石見銀山世界遺産センター", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.09844555959177, 132.44022909236787]).addTo(map).bindPopup(`
@@ -150,8 +133,8 @@
 
   L.marker([35.10053934337973, 132.4301704561334]).addTo(map).bindPopup(`
     <h3>石見銀山街道「龍源寺間歩前」</h3>
-    <a href="https://superspl.at/view?id=ccf40b21" target="_blank">SuperSplatで見る</a><br>
-    <a href="https://superspl.at/view?id=61f4cc0d" target="_blank">SuperSplatで見る（低木版）</a><br>
+    <a href="https://superspl.at/view?id=ccf40b21" target="_blank">3D Gaussian Splattingによるモデルを見る</a><br>
+    <a href="https://superspl.at/view?id=61f4cc0d" target="_blank">3D Gaussian Splattingによるモデルを見る（低木版）</a><br>
     <p>Click below for immersive full-screen 360° view</p>
       <iframe width="100%" height="320" frameborder="0"
         allow="xr-spatial-tracking; gyroscope; accelerometer"
@@ -311,14 +294,14 @@
   `).bindTooltip("愛宕神社", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.098008, 132.356077]).addTo(map).bindPopup(`
-    <h3>登り窯</h3>
+    <h3>温泉津やきもの里・やきもの館 登り窯</h3>
     <p>Click below for immersive full-screen 360° view</p>
       <iframe width="100%" height="320" frameborder="0"
         allow="xr-spatial-tracking; gyroscope; accelerometer"
         allowfullscreen scrolling="no"
         src="https://kuula.co/share/collection/7HBJC?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1">
       </iframe>
-  `).bindTooltip("登り窯", {permanent:true,direction:"top",offset:[-15,-20]});
+  `).bindTooltip("やきもの館", {permanent:true,direction:"top",offset:[-15,-20]});
 
   L.marker([35.095724, 132.346255]).addTo(map).bindPopup(`
     <h3>龍御前神社</h3>
@@ -363,6 +346,7 @@
 </script>
 </body>
 </html>
+
 
 
 
